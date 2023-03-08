@@ -12,35 +12,27 @@ class Solution
     bool ispar(string x)
     {
         // Your code here
-        stack<char> s;
+        stack<char> st;
         for(int i=0;i<x.size();i++){
             char ch = x[i];
             
-            //if opening bracket push in stack
             if(ch == '(' || ch == '{' || ch == '['){
-                s.push(ch);
+                st.push(ch);
             }
-            //if closing bracket check stack top & pop
             else{
-                //for closing bracket
-                if(!s.empty()){
-                    char top = s.top();
-                    if((ch == ')' && top == '(') || (ch == '}' && top == '{') || (ch == ']' && top == '[')){
-                        s.pop();
+                if(!st.empty()){
+                    char top = st.top();
+                    if((ch == ')' && top =='(') || (ch == '}' && top == '{') || (ch == ']' && top =='[')){
+                        st.pop();
                     }
-                    else{
-                        return false;
-                    }
+                    else{return false;}
                 }
                 else{return false;}
             }
         }
-        if(s.empty()){
-            return true;
-        }
-        else{
-            return false;
-        }
+        if(st.empty())
+        return true;
+        return false;
     }
 
 };
